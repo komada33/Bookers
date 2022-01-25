@@ -1,6 +1,6 @@
 <h1>Editing Book</h1>
 
-<%= form_for @book, url: update_book_path(@book.id), method: :patch do |f| %>
+<%= form_with model: @book, method: :patch do |f| %>
 <h4>Title</h4>
 <%= f.text_field :title %>
 <h4>Body</h4>
@@ -8,4 +8,5 @@
 
 <%= f.submit 'Update Book' %>
 <% end %>
-
+<%= link_to "Delete", book_path(@book.id), method: :delet, "data-confirm" => "本当に削除しますか？" %>
+<%= link_to "Back", books_path %>

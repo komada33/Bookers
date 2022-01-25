@@ -2,13 +2,13 @@
 <% @books. each do |book| %>
 <%= book.title %>
 <%= book.body %>
-<%= link_to 'show', show_book_path(book.id) %>
+<%= link_to 'show', book_path(book.id) %>
 <%= link_to "Edit", edit_book_path(book.id) %>
-<%= link_to "Delete", destroy_book_path(@book.id), method: :delet, "data-confirm" => "本当に削除しますか？" %></br>
+<%= link_to "Delete", book_path(book.id), method: :delet, "data-confirm" => "本当に削除しますか？" %></br>
 <% end %>
 
 <h2>New book</h2>
-<%= form_for book do |f| %>
+<%= form_with model: @book, local:true do |f| %>
 <h4>Title</h4>
 <%= f.text_field :title %>
 <h4>Body</h4>
