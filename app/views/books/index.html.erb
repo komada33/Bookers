@@ -1,18 +1,44 @@
 <h1>Bookers</h1>
-<% @books. each do |book| %>
-<%= book.title %>
-<%= book.body %>
-<%= link_to 'show', book_path(book.id) %>
-<%= link_to "Edit", edit_book_path(book.id) %>
-<%= link_to "Delete", book_path(book.id), method: :delet, "data-confirm" => "本当に削除しますか？" %></br>
+<table>
+ <thead>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th></th>
+  </tr>
+ </thead>
+
+ <tbody>
+   <% @books. each do |book| %>
+    <tr>
+     <tb><%= book.title %></tb>
+     <tb><%= book.body %></tb>
+     <tb><%= link_to 'show', book_path(book.id) %></tb>
+     <tb><%= link_to "Edit", edit_book_path(book.id) %></tb>
+     <tb><%= link_to "Delete", book_path(book.id), method: :delet, "data-confirm" => "本当に削除しますか？" %></tb></br>
+    </tr>
+   <% end %>
+ </tbody>
+</table>
+
+</tbody>
+<h2>New book</h2>
+<% if @book.errors.any? %>
+<%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
-<h2>New book</h2>
-<%= form_with model: @book, local:true do |f| %>
-<h4>Title</h4>
-<%= f.text_field :title %>
-<h4>Body</h4>
-<%= f.text_area :body %>
+ <%= form_with model: @book, local:true do |f| %>
 
-<%= f.submit 'Create Book' %>
+<h4>Title</h4>
+ <%= f.text_field :title %>
+
+<h4>Body</h4>
+ <%= f.text_area :body %>
+
+ <%= f.submit 'Create Book' %>
 <% end %>
